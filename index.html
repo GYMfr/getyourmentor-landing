@@ -7,7 +7,7 @@
 <meta name="description" content="GetYourMentor : trouve un coach sportif verifie pres de chez toi, reserve ton creneau et entraine-toi. Football, basket, sports de combat, remise en forme.">
 <meta property="og:title" content="GetYourMentor - Le terrain de rencontre entre sportifs, coachs et clubs">
 <meta property="og:description" content="GetYourMentor : trouve un coach sportif verifie pres de chez toi, reserve ton creneau et entraine-toi. Football, basket, sports de combat, remise en forme.">
-<meta name="theme-color" content="#14181F">
+<meta name="theme-color" content="#FFFFFF">
 <script>try{var t=localStorage.getItem('gym-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
 <body>
@@ -20,24 +20,24 @@
 
 /* ===== Jetons ===== */
 :root{
-  /* constantes de marque (identiques dans les 2 thèmes) */
+  /* constantes de marque */
   --orange:#FF5A36; --orange-600:#F2451E; --volt:#C6F24E; --green:#1FB574; --red:#E5484D;
   --ink:#14181F; --cream:#F7F5F2;
-  /* fonds/textes pilotés par le thème (défaut = sombre) */
-  --bg:#14181F; --panel:#1A2028; --panel-2:#222B36; --edge:#2C3745;
-  --text:#EEF0EC; --dim:#93A0B2; --field:#10141B;
-  --eyebrow:#C6F24E; --nav:rgba(20,24,31,.82);
-  /* bande "confiance" inversée (pop dans les 2 thèmes) */
-  --inv-bg:#F7F5F2; --inv-surface:#FFFFFF; --inv-text:#14181F; --inv-dim:#5B6675; --inv-edge:#ECE7E0;
+  /* DEFAUT = CLAIR, fond du prototype (blanc + cartes gris clair) */
+  --bg:#FFFFFF; --panel:#F2F2F2; --panel-2:#E8E8E8; --edge:#E6E6E6;
+  --text:#14181F; --dim:#5C5C5C; --field:#FFFFFF;
+  --eyebrow:#CC4416; --nav:rgba(255,255,255,.86);
+  /* bande "confiance" inversee = sombre sur page claire */
+  --inv-bg:#14181F; --inv-surface:#1A2028; --inv-text:#EEF0EC; --inv-dim:#93A0B2; --inv-edge:#2C3745;
   --fd:"Barlow Condensed",Impact,sans-serif;
   --fb:"Barlow",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   --maxw:1180px; --r:16px; --r-lg:26px;
 }
-:root[data-theme="light"]{
-  --bg:#F7F5F2; --panel:#FFFFFF; --panel-2:#EFE9E2; --edge:#E7E1D9;
-  --text:#14181F; --dim:#5B6675; --field:#FFFFFF;
-  --eyebrow:#F2451E; --nav:rgba(247,245,242,.85);
-  --inv-bg:#14181F; --inv-surface:#1A2028; --inv-text:#EEF0EC; --inv-dim:#93A0B2; --inv-edge:#2C3745;
+:root[data-theme="dark"]{
+  --bg:#14181F; --panel:#1A2028; --panel-2:#222B36; --edge:#2C3745;
+  --text:#EEF0EC; --dim:#93A0B2; --field:#10141B;
+  --eyebrow:#C6F24E; --nav:rgba(20,24,31,.82);
+  --inv-bg:#F7F5F2; --inv-surface:#FFFFFF; --inv-text:#14181F; --inv-dim:#5B6675; --inv-edge:#ECE7E0;
 }
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -69,9 +69,9 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 .nav-right{display:flex;align-items:center;gap:12px;}
 .theme-tgl{width:40px;height:40px;border-radius:10px;border:1.5px solid var(--edge);background:var(--panel);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .15s,transform .15s;}
 .theme-tgl:hover{border-color:var(--orange);transform:translateY(-1px);}
-.theme-tgl .i-sun{display:none;}
-:root[data-theme="light"] .theme-tgl .i-sun{display:block;}
-:root[data-theme="light"] .theme-tgl .i-moon{display:none;}
+.theme-tgl .i-sun{display:none;}.theme-tgl .i-moon{display:block;}
+:root[data-theme="dark"] .theme-tgl .i-moon{display:none;}
+:root[data-theme="dark"] .theme-tgl .i-sun{display:block;}
 .nav-cta{font-size:15px;padding:11px 20px;}
 @media(max-width:860px){.nav-links{display:none;}}
 
@@ -496,7 +496,7 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
   try{ var saved=localStorage.getItem('gym-theme'); if(saved){ root.setAttribute('data-theme',saved); } }catch(e){}
   var tgl=document.getElementById('themeTgl');
   if(tgl){ tgl.addEventListener('click',function(){
-    var cur=root.getAttribute('data-theme')==='light'?'dark':'light';
+    var cur=root.getAttribute('data-theme')==='dark'?'light':'dark';
     root.setAttribute('data-theme',cur);
     try{ localStorage.setItem('gym-theme',cur); }catch(e){}
   }); }
