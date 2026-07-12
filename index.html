@@ -50,7 +50,7 @@ a{color:inherit;text-decoration:none;}
 img{max-width:100%;display:block;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
 .eyebrow{font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:3px;font-size:14px;color:var(--eyebrow);}
-.section{padding:44px 0;}
+.section{padding:30px 0;}
 .btn{font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:18px;border:none;border-radius:999px;padding:15px 28px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:transform .18s ease,background .18s ease;text-align:center;}
 .btn-primary{background:var(--orange);color:#fff;box-shadow:0 10px 30px -10px rgba(255,90,54,.6);}
 .btn-primary:hover{background:var(--orange-600);transform:translateY(-2px);}
@@ -149,48 +149,47 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 .strip-item i{width:7px;height:7px;background:var(--orange);border-radius:50%;font-style:normal;}
 
 /* ===== Section heading ===== */
-.sec-head{max-width:720px;margin-bottom:24px;}
+.sec-head{max-width:720px;margin-bottom:16px;}
 .sec-head h2{font-size:clamp(28px,4vw,44px);margin-top:8px;color:var(--text);}
 .sec-head p{color:var(--dim);font-size:17px;margin-top:10px;}
 
 /* ===== Steps ===== */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 .step{background:var(--panel);border:1px solid var(--edge);border-radius:var(--r-lg);padding:22px 22px;transition:transform .2s,border-color .2s;}
 .step:hover{transform:translateY(-4px);border-color:var(--orange);}
 .step .no{font-family:var(--fd);font-weight:800;font-size:48px;line-height:.8;color:transparent;-webkit-text-stroke:2px var(--edge);}
 .step:hover .no{-webkit-text-stroke-color:var(--orange);}
 .step h3{font-size:23px;margin:8px 0 6px;color:var(--text);}
 .step p{color:var(--dim);font-size:16px;}
-@media(max-width:820px){.steps{grid-template-columns:1fr;}}
+@media(max-width:820px){.steps{grid-template-columns:1fr;gap:10px;}.step{padding:16px 18px;display:flex;align-items:center;gap:14px;}.step .no{font-size:38px;margin:0;}.step h3{margin:0 0 2px;}}
 
 /* ===== Disciplines ===== */
-.disc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.disc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
 .disc{position:relative;border-radius:var(--r-lg);padding:24px;min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border:1px solid var(--edge);background:var(--panel);transition:transform .2s,border-color .2s;}
 .disc:hover{transform:translateY(-4px);border-color:var(--orange);}
 .disc::after{content:"";position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,90,54,.16),transparent 70%);pointer-events:none;}
-.disc:nth-child(1){grid-column:span 2;padding-top:58px;min-height:172px;}
+.disc:nth-child(1){padding-top:50px;}
 .disc .tag{position:absolute;top:22px;left:24px;font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:12px;color:#14181F;background:var(--volt);padding:5px 11px;border-radius:999px;}
 .disc h3{font-size:clamp(30px,4vw,46px);position:relative;color:var(--text);}
 .disc p{color:var(--dim);margin-top:8px;position:relative;max-width:46ch;}
 .disc .go{position:relative;margin-top:16px;font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:14px;color:var(--orange);}
-@media(max-width:820px){.disc-grid{grid-template-columns:1fr;}.disc:nth-child(1){grid-column:span 1;}}
+@media(max-width:520px){.disc{min-height:120px;padding:18px;}.disc h3{font-size:26px;}.disc p{display:none;}}
 
 /* ===== Confiance (bande inversée) ===== */
 .invert{background:var(--inv-bg);color:var(--inv-text);}
 .invert .sec-head h2{color:var(--inv-text);}
 .invert .sec-head p{color:var(--inv-dim);}
 .invert .eyebrow{color:var(--orange);}
-.proofs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.proofs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 .proof{background:var(--inv-surface);border:1px solid var(--inv-edge);border-radius:var(--r);padding:20px 18px;transition:transform .2s,box-shadow .2s;}
 .proof:hover{transform:translateY(-4px);box-shadow:0 24px 50px -28px rgba(20,24,31,.35);}
 .proof .ic{width:40px;height:40px;border-radius:11px;background:var(--ink);color:var(--orange);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
 .proof h3{color:var(--inv-text);font-size:21px;}
 .proof p{color:var(--inv-dim);font-size:15px;margin-top:7px;}
-@media(max-width:820px){.proofs{grid-template-columns:1fr 1fr;}}
-@media(max-width:520px){.proofs{grid-template-columns:1fr;}}
+@media(max-width:820px){.proofs{grid-template-columns:1fr 1fr;}.proof{padding:16px 14px;}.proof .ic{width:34px;height:34px;margin-bottom:8px;}.proof h3{font-size:18px;}}
 
 /* ===== Pro ===== */
-.pro-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.pro-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .pro-card{background:var(--panel);border:1px solid var(--edge);border-radius:var(--r-lg);padding:26px;}
 .pro-card .kick{font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:13px;color:var(--orange);}
 .pro-card.club .kick{color:var(--green);}
@@ -199,6 +198,13 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 .pro-card li{display:flex;gap:11px;align-items:flex-start;color:var(--dim);}
 .pro-card li::before{content:"";width:8px;height:8px;margin-top:8px;border-radius:2px;background:var(--orange);flex-shrink:0;transform:rotate(45deg);}
 .pro-card.club li::before{background:var(--green);}
+.fold{border:1px solid var(--edge);border-radius:var(--r-lg);background:var(--panel);padding:2px 22px;}
+.fold summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;}
+.fold summary::-webkit-details-marker{display:none;}
+.fold-h{display:block;margin-top:4px;font-family:var(--fd);font-weight:800;text-transform:uppercase;letter-spacing:.5px;font-size:clamp(22px,3.2vw,34px);color:var(--text);line-height:1;}
+.fold summary .pl{color:var(--orange);font-size:30px;line-height:1;flex-shrink:0;transition:transform .2s;}
+.fold[open] summary .pl{transform:rotate(45deg);}
+.fold .pro-grid{margin:4px 0 22px;}
 @media(max-width:820px){.pro-grid{grid-template-columns:1fr;}}
 
 /* ===== Chiffres ===== */
@@ -402,12 +408,10 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
   <!-- PRO -->
   <section class="section" id="pro">
     <div class="wrap">
-      <div class="sec-head rv">
-        <span class="eyebrow">Coachs &amp; clubs</span>
-        <h2>Vous entraînez. GYM développe votre activité.</h2>
-      </div>
+      <details class="fold rv">
+        <summary><span class="fold-lbl"><span class="eyebrow">Coachs &amp; clubs</span><span class="fold-h">Vous entraînez ? Développez votre activité.</span></span><span class="pl">+</span></summary>
       <div class="pro-grid">
-        <div class="pro-card rv">
+        <div class="pro-card">
           <div class="kick">Pour les coachs</div>
           <h3>Votre expertise mérite plus de visibilité.</h3>
           <ul>
@@ -431,19 +435,7 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
           <a href="#waitlist" class="btn btn-ghost">Équiper mon club</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- FACTS -->
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <div class="facts rv">
-        <div class="fact"><div class="n">4</div><div class="l">disciplines au lancement</div></div>
-        <div class="fact"><div class="n">100%</div><div class="l">des coachs vérifiés avant publication</div></div>
-        <div class="fact"><div class="n">48h</div><div class="l">annulé avant : remboursé à 100%</div></div>
-        <div class="fact"><div class="n">0</div><div class="l">donnée bancaire stockée chez nous</div></div>
-      </div>
-      <p class="facts-note rv">Un besoin confirmé sur le terrain : notre sondage auprès de sportifs, de coachs et de clubs a nourri chaque décision du produit.</p>
+      </details>
     </div>
   </section>
 
