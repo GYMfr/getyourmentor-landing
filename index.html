@@ -75,7 +75,14 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 :root[data-theme="dark"] .theme-tgl .i-moon{display:none;}
 :root[data-theme="dark"] .theme-tgl .i-sun{display:block;}
 .nav-cta{font-size:15px;padding:11px 20px;}
-@media(max-width:860px){.nav-links{display:none;}}
+.mobile-cta{display:none;}
+@media(max-width:860px){
+  .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .mobile-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:11px 16px;padding-bottom:calc(11px + env(safe-area-inset-bottom));background:var(--nav);backdrop-filter:blur(12px);border-top:1px solid var(--edge);}
+  .mobile-cta .btn{flex:1;justify-content:center;}
+  body{padding-bottom:74px;}
+}
 
 /* ===== Hero ===== */
 .hero{position:relative;overflow:hidden;padding:34px 0 44px;}
@@ -96,7 +103,14 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 .searchbar .btn{justify-content:center;}
 .hero-note{margin-top:14px;font-size:14px;color:var(--dim);display:flex;align-items:center;gap:8px;}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(255,90,54,.18);}
-@media(max-width:940px){.hero-grid{grid-template-columns:1fr;}.hero-visual{order:-1;}.searchbar{grid-template-columns:1fr;}}
+@media(max-width:940px){
+  .hero-grid{grid-template-columns:1fr;}
+  .searchbar{grid-template-columns:1fr;}
+  .hero-visual{margin-top:24px;}
+  .phone{width:100%;max-width:360px;height:auto;background:transparent;border:none;box-shadow:none;padding:0;margin:0 auto;border-radius:0;}
+  .phone .notch{display:none;}
+  .screen{height:auto;border-radius:20px;border:1px solid #26303c;box-shadow:0 24px 50px -30px rgba(0,0,0,.45);padding:16px 14px;gap:10px;}
+}
 
 /* ===== Phone (objet sombre, identique dans les 2 thèmes) ===== */
 .phone-wrap{position:relative;justify-self:center;}
@@ -473,6 +487,8 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
     </div>
   </section>
 </main>
+
+<div class="mobile-cta"><a href="#waitlist" class="btn btn-primary">Être prévenu du lancement</a></div>
 
 <footer class="ft">
   <div class="wrap">
