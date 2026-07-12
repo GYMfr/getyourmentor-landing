@@ -360,6 +360,12 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
 .stores.big .store{padding:11px 20px;}
 .stores.big .store span b{font-size:19px;}
 
+/* disciplines compactes (bande de pastilles) */
+.disc-band{display:flex;align-items:center;justify-content:center;gap:16px 22px;flex-wrap:wrap;text-align:center;}
+.disc-pills{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.dpill{font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:15px;padding:9px 18px;border-radius:999px;background:var(--panel);border:1px solid var(--edge);color:var(--text);}
+.dpill.hot{background:var(--orange);border-color:var(--orange);color:#fff;}
+
 /* ===== Reveal ===== */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
 .rv.in{opacity:1;transform:none;}
@@ -464,72 +470,33 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
     </div>
   </div>
 
-  <!-- DISCIPLINES (bande) -->
-  <section class="section" id="disciplines">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="eyebrow">Le terrain de jeu</span>
-        <h2>Quatre disciplines au lancement.</h2>
-        <p>On démarre avec quatre disciplines bien maîtrisées et des coachs sélectionnés, avant d'élargir l'offre.</p>
-      </div>
-      <div class="disc-grid">
-        <article class="disc rv"><span class="tag">Le plus demandé</span><h3>Football</h3><p>Technique, préparation et performance, du jeune joueur à l'adulte qui veut passer un cap.</p><span class="go">Voir les coachs bientôt</span></article>
-        <article class="disc rv"><h3>Basketball</h3><p>Individuel, collectif et explosivité.</p><span class="go">Voir les coachs bientôt</span></article>
-        <article class="disc rv"><h3>Sports de combat</h3><p>Maîtrise, condition et confiance.</p><span class="go">Voir les coachs bientôt</span></article>
-        <article class="disc rv"><h3>Métiers de la forme</h3><p>Renforcement, mobilité et objectifs personnels.</p><span class="go">Voir les coachs bientôt</span></article>
+  <!-- DISCIPLINES (bande compacte de pastilles) -->
+  <section id="disciplines" style="padding:24px 0;">
+    <div class="wrap disc-band rv">
+      <span class="eyebrow">4 disciplines au lancement</span>
+      <div class="disc-pills">
+        <span class="dpill hot">Football</span>
+        <span class="dpill">Basketball</span>
+        <span class="dpill">Sports de combat</span>
+        <span class="dpill">Métiers de la forme</span>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES (blocs illustres, alternance texte / ecran) -->
+  <!-- APP (bloc unique compact : ce que fait l'appli) -->
   <section class="feat" id="app">
     <div class="wrap">
-
-      <!-- Bloc 1 : Trouver -->
       <div class="feat-row rv">
         <div class="feat-txt">
-          <span class="eyebrow">Trouver</span>
-          <h2>Le bon coach, juste à côté de chez toi.</h2>
-          <p class="lead">Football, basket, sports de combat ou remise en forme : tu vois les coachs vérifiés autour de toi, avec leurs diplômes, leurs avis et leurs tarifs.</p>
+          <span class="eyebrow">L'application</span>
+          <h2>Trouve, réserve, entraîne-toi.</h2>
+          <p class="lead">Un coach vérifié près de chez toi, un créneau réservé en quelques secondes et payé en sécurité. Tout se passe dans l'appli.</p>
           <ul class="feat-list">
-            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.5-6-10a6 6 0 0 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg></span><span>Coachs et clubs géolocalisés autour de toi.</span></li>
-            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><span>Diplômes et identité vérifiés à la main.</span></li>
-            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.5-.8z"/></svg></span><span>Avis laissés uniquement après une vraie séance.</span></li>
+            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><span><b>Coachs vérifiés</b> : diplômes et identité contrôlés à la main, avis laissés après une vraie séance.</span></li>
+            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span><span><b>Réserve et paie</b> en ligne : le coach est réglé après la séance, tu reçois ton code.</span></li>
+            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></span><span><b>Zéro risque</b> : 100% remboursé jusqu'à 48h avant, aucune donnée bancaire stockée chez nous.</span></li>
           </ul>
-        </div>
-        <div class="feat-media">
-          <div class="phone">
-            <div class="notch"></div>
-            <div class="screen">
-              <div class="s-status"><span>9:41</span><span class="s-sig"></span></div>
-              <div class="s-top"><span class="loc"><i class="pin"></i>Marseille</span><span class="s-ava">MS</span></div>
-              <div class="s-sec">Coachs de football · autour de toi</div>
-              <div class="s-chips"><span class="s-chip on">Football</span><span class="s-chip">Basket</span><span class="s-chip">Combat</span><span class="s-chip">Forme</span></div>
-              <div class="coach"><div class="s-av small">TF<i class="s-verif">✓</i></div><div class="info"><div class="nm">Thomas F.</div><div class="meta"><span class="rt">★ 4.8</span> · Football · 8e</div></div><div class="price"><b>35</b>€<span>/ séance</span></div></div>
-              <div class="coach"><div class="s-av small">LV<i class="s-verif">✓</i></div><div class="info"><div class="nm">Léa V.</div><div class="meta"><span class="rt">★ 4.9</span> · Prépa physique · 6e</div></div><div class="price"><b>28</b>€<span>/ séance</span></div></div>
-              <div class="coach"><div class="s-av small">KB<i class="s-verif">✓</i></div><div class="info"><div class="nm">Karim B.</div><div class="meta"><span class="rt">★ 4.7</span> · Technique · 2e</div></div><div class="price"><b>32</b>€<span>/ séance</span></div></div>
-              <div class="s-nav">
-                <span class="s-nav-i on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
-                <span class="s-nav-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>
-                <span class="s-nav-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span>
-                <span class="s-nav-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bloc 2 : Reserver -->
-      <div class="feat-row rev rv">
-        <div class="feat-txt">
-          <span class="eyebrow">Réserver</span>
-          <h2>Réserve ton créneau, paie en sécurité.</h2>
-          <p class="lead">Tu choisis le jour et l'heure, tu paies en ligne. Le coach est réglé après la séance, et tu reçois un code à lui donner le jour J.</p>
-          <ul class="feat-list">
-            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span><span>Créneaux en temps réel, réservation en quelques secondes.</span></li>
-            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></span><span>Paiement sécurisé, aucune donnée bancaire stockée chez nous.</span></li>
-            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg></span><span>Annulation claire : 100% remboursé jusqu'à 48h avant.</span></li>
-          </ul>
+          <a href="#download" class="btn btn-primary" style="margin-top:24px;">Télécharger l'appli</a>
         </div>
         <div class="feat-media">
           <div class="phone">
@@ -552,83 +519,24 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
           </div>
         </div>
       </div>
-
-      <!-- Bloc 3 : Suivre -->
-      <div class="feat-row rv">
-        <div class="feat-txt">
-          <span class="eyebrow">Suivre</span>
-          <h2>Ton coach, tes cours, au même endroit.</h2>
-          <p class="lead">Messagerie intégrée, historique de tes séances et prochains rendez-vous : tout est dans l'application, sans jongler entre dix outils.</p>
-          <ul class="feat-list">
-            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span>Messagerie directe avec ton coach.</span></li>
-            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span>Tes prochaines séances et ton historique.</span></li>
-            <li><span class="fi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9z"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><span>Rappels avant chaque cours.</span></li>
-          </ul>
-        </div>
-        <div class="feat-media">
-          <div class="phone">
-            <div class="notch"></div>
-            <div class="screen">
-              <div class="s-status"><span>9:41</span><span class="s-sig"></span></div>
-              <div class="s-prof"><div class="s-av small">LV<i class="s-verif">✓</i></div><div class="info"><div class="nm">Léa V.</div><div class="meta">Coach · en ligne</div></div></div>
-              <div class="s-thread">
-                <span class="s-bubble in">Salut ! Prête pour demain 19h ? 💪</span>
-                <span class="s-bubble out">Oui carrément, on se retrouve où ?</span>
-                <span class="s-bubble in">Terrain du Prado, entrée nord. Amène une bouteille d'eau.</span>
-              </div>
-              <div class="s-sec">Prochain cours</div>
-              <div class="s-agenda"><div class="cal"><b>13</b><small>JUIL</small></div><div class="info"><div class="nm">Séance avec Léa V.</div><div class="meta">Demain · 19h00 · Le Prado</div></div><span class="booked">✓</span></div>
-              <div class="s-nav">
-                <span class="s-nav-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
-                <span class="s-nav-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>
-                <span class="s-nav-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span>
-                <span class="s-nav-i on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p class="demo-note">Écrans de démonstration. Coachs, créneaux et messages illustrés.</p>
+      <p class="demo-note">Écran de démonstration. Coachs et créneaux illustrés.</p>
     </div>
   </section>
 
-  <!-- CONFIANCE (bande inversée) -->
-  <section class="section invert">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="eyebrow">La confiance d'abord</span>
-        <h2>Des coachs, pas des profils improvisés.</h2>
-        <p>Avant de sortir la carte, tu veux être sûr. On a construit la plateforme pour ça.</p>
-      </div>
-      <div class="proofs">
-        <div class="proof rv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Diplômes contrôlés</h3><p>Chaque coach doit prouver ses certifications, vérifiées à la main avant validation.</p></div>
-        <div class="proof rv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div><h3>Identité vérifiée</h3><p>Pièce d'identité et numéro de téléphone contrôlés. On sait qui coache.</p></div>
-        <div class="proof rv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></div><h3>Paiement sécurisé</h3><p>Tu paies en ligne, le coach est réglé après la séance. Aucune donnée bancaire stockée chez nous.</p></div>
-        <div class="proof rv"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.5-.8z"/></svg></div><h3>Avis authentiques</h3><p>Seules les personnes ayant réellement réservé une séance peuvent laisser un avis.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMMUNAUTE / PREUVE TERRAIN -->
+  <!-- PREUVE TERRAIN (compacte) -->
   <section class="section" id="preuve">
     <div class="wrap">
-      <div class="sec-head rv">
-        <span class="eyebrow">Ce que le terrain nous dit</span>
-        <h2>On a demandé. Voilà ce qui bloque.</h2>
-        <p>Avant d'écrire une ligne de code, on a interrogé les sportifs et les coachs de Marseille. Leurs réponses ont dessiné l'application.</p>
+      <div class="sec-head rv" style="text-align:center;margin-left:auto;margin-right:auto;">
+        <span class="eyebrow">Pensée pour un vrai besoin</span>
+        <h2>La difficulté n°1 des sportifs : trouver un bon coach près de chez soi.</h2>
+        <p>On l'a entendu directement du terrain, avant même de construire l'appli.</p>
       </div>
       <div class="comm-nums">
         <div class="cn rv"><div class="n">626</div><div class="l">sportifs interrogés</div></div>
         <div class="cn rv"><div class="n">168</div><div class="l">coachs &amp; salles interrogés</div></div>
         <div class="cn rv"><div class="n">4</div><div class="l">disciplines au lancement</div></div>
       </div>
-      <div class="verbatims">
-        <div class="vcard rv"><p class="q">Trouver un coach compétent près de chez moi.</p><span class="src">Difficulté n°1 · sondage sportifs</span></div>
-        <div class="vcard rv"><p class="q">Trouver des créneaux qui collent à mon emploi du temps.</p><span class="src">Sondage sportifs</span></div>
-        <div class="vcard rv"><p class="q">Avoir des tarifs clairs, sans mauvaise surprise.</p><span class="src">Sondage sportifs</span></div>
-      </div>
-      <p class="comm-note">Résultats du sondage GetYourMentor mené auprès de 626 sportifs et 168 coachs et salles. Chiffres réels, aucun témoignage inventé.</p>
+      <p class="comm-note">Chiffres réels du sondage GetYourMentor. Aucun témoignage inventé.</p>
     </div>
   </section>
 
