@@ -111,18 +111,20 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 .s-chip{font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:11px;padding:5px 10px;border-radius:999px;background:#14181F;border:1px solid #2C3745;color:#93A0B2;}
 .s-chip.on{background:var(--orange);border-color:var(--orange);color:#fff;}
 .coach{background:#14181F;border:1px solid #2C3745;border-radius:14px;padding:11px;display:flex;gap:11px;align-items:center;}
-.coach .av{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#2a333f,#384656);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:800;color:var(--volt);font-size:19px;flex-shrink:0;}
+.coach .av{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#3a4658,#242e3b);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:800;color:#EEF0EC;font-size:18px;flex-shrink:0;}
 .coach .info{flex:1;min-width:0;}
 .coach .nm{font-family:var(--fd);font-weight:700;text-transform:uppercase;font-size:16px;letter-spacing:.4px;line-height:1;color:#EEF0EC;}
 .coach .meta{font-size:12px;color:#93A0B2;margin-top:3px;}
-.coach .rt{color:var(--volt);font-weight:600;}
+.coach .rt{color:#F4C04E;font-weight:600;}
 .coach .price{font-family:var(--fd);font-weight:800;font-size:19px;color:#EEF0EC;text-align:right;line-height:1;}
 .coach .price span{display:block;font-size:10px;color:#93A0B2;font-weight:600;letter-spacing:1px;}
-.s-btn{margin-top:2px;background:var(--orange);color:#fff;font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:14px;text-align:center;padding:11px;border-radius:11px;}
-.toast{position:absolute;left:12px;right:12px;bottom:14px;background:var(--green);color:#04150d;border-radius:13px;padding:11px 13px;display:flex;gap:10px;align-items:center;box-shadow:0 20px 40px -14px rgba(31,181,116,.55);animation:floaty 3.6s ease-in-out infinite;}
-.toast .tk{font-family:var(--fd);font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.5px;}
-.toast .tk small{display:block;font-family:var(--fb);font-weight:600;font-size:11px;opacity:.8;letter-spacing:0;text-transform:none;}
-.toast .chk{width:26px;height:26px;border-radius:50%;background:#04150d;color:var(--green);display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;}
+.s-brand{font-family:var(--fd);font-weight:800;letter-spacing:1px;color:#5B6675;}
+.loc{display:inline-flex;align-items:center;}
+.loc .pin{width:8px;height:8px;border-radius:50%;background:var(--orange);display:inline-block;margin-right:6px;box-shadow:0 0 0 3px rgba(255,90,54,.2);}
+.s-confirm{margin-top:auto;display:flex;align-items:center;gap:10px;background:rgba(31,181,116,.15);border:1px solid rgba(31,181,116,.42);border-radius:13px;padding:10px 12px;}
+.s-confirm .chk{width:26px;height:26px;border-radius:50%;background:var(--green);color:#04150d;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;font-size:14px;}
+.s-confirm-t b{display:block;font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:13px;color:#DFF3E9;line-height:1.15;}
+.s-confirm-t small{color:#7FBBA0;font-size:11px;}
 @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
 .demo-note{text-align:center;margin-top:12px;font-size:12px;color:var(--dim);letter-spacing:.3px;}
 
@@ -299,23 +301,22 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
           <div class="phone">
             <div class="notch"></div>
             <div class="screen">
-              <div class="s-top"><span class="loc">📍 <b>Marseille</b></span><span>GYM</span></div>
-              <div class="s-search">Coach de football, aujourd'hui...</div>
-              <div class="s-chips"><span class="s-chip on">Aujourd'hui</span><span class="s-chip">Mieux notés</span><span class="s-chip">- de 30€</span></div>
+              <div class="s-top"><span class="loc"><i class="pin"></i>Marseille</span><span class="s-brand">GYM</span></div>
+              <div class="s-search">Coach de football, aujourd'hui</div>
+              <div class="s-chips"><span class="s-chip on">Aujourd'hui</span><span class="s-chip">Mieux notés</span></div>
               <div class="coach">
                 <div class="av">TF</div>
-                <div class="info"><div class="nm">Thomas F.</div><div class="meta"><span class="rt">★ 4.8</span> · Technique &amp; finition · 8e</div></div>
-                <div class="price">35€<span>/ séance</span></div>
+                <div class="info"><div class="nm">Thomas F.</div><div class="meta"><span class="rt">★ 4.8</span> · Technique, 8e</div></div>
+                <div class="price">35€<span>séance</span></div>
               </div>
               <div class="coach">
                 <div class="av">LV</div>
-                <div class="info"><div class="nm">Léa V.</div><div class="meta"><span class="rt">★ 4.7</span> · Prépa &amp; explosivité · 2e</div></div>
-                <div class="price">28€<span>/ séance</span></div>
+                <div class="info"><div class="nm">Léa V.</div><div class="meta"><span class="rt">★ 4.7</span> · Prépa, 2e</div></div>
+                <div class="price">28€<span>séance</span></div>
               </div>
-              <div class="s-btn">Réserver le créneau de 18h00</div>
-              <div class="toast">
+              <div class="s-confirm">
                 <span class="chk">✓</span>
-                <span class="tk">Réservation confirmée<small>Code à donner au coach : 4F7A2C</small></span>
+                <div class="s-confirm-t"><b>Réservation confirmée</b><small>Code coach : 4F7A2C</small></div>
               </div>
             </div>
           </div>
