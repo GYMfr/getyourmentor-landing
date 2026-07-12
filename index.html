@@ -79,24 +79,6 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 .nav-cta{font-size:15px;padding:11px 20px;}
 @media(max-width:860px){.nav-links{display:none;}.nav-cta{display:none;}}
 
-/* (barre de recherche flottante retiree : posture 100% telechargement) */
-.floatbar{position:fixed;left:0;right:0;bottom:18px;z-index:60;display:flex;justify-content:center;padding:0 16px;pointer-events:none;opacity:0;transform:translateY(16px);transition:opacity .3s ease,transform .3s ease;}
-.floatbar.show{opacity:1;transform:none;}
-.floatbar:not(.show) .fbar{pointer-events:none;}
-.fbar{pointer-events:auto;display:flex;align-items:center;gap:2px;background:var(--panel);border:1px solid var(--edge);border-radius:999px;padding:7px 7px 7px 8px;box-shadow:0 18px 44px -16px rgba(0,0,0,.4);max-width:660px;width:100%;cursor:pointer;transition:box-shadow .2s,transform .2s;}
-.fbar:hover{box-shadow:0 24px 52px -16px rgba(0,0,0,.5);transform:translateY(-1px);}
-.fbar-f{display:flex;align-items:center;gap:8px;color:var(--text);font-size:15px;font-weight:600;padding:8px 14px;white-space:nowrap;flex:1;}
-.fbar-f svg{color:var(--orange);flex-shrink:0;}
-.fbar-sep{width:1px;height:22px;background:var(--edge);flex-shrink:0;}
-.fbar-btn{border-radius:999px;padding:12px 20px;font-size:15px;white-space:nowrap;flex-shrink:0;}
-@media(max-width:640px){
-  .floatbar{bottom:0;padding:9px 12px;padding-bottom:calc(9px + env(safe-area-inset-bottom));background:var(--nav);backdrop-filter:blur(10px);border-top:1px solid var(--edge);}
-  .fbar{box-shadow:none;border:none;background:transparent;padding:0;gap:0;}
-  .fbar-f,.fbar-sep{display:none;}
-  .fbar-btn{flex:1;justify-content:center;padding:14px;font-size:16px;}
-  .fbar-btxt::after{content:" un coach";}
-}
-
 /* ===== Hero ===== */
 .hero{position:relative;overflow:hidden;padding:34px 0 44px;}
 .hero::before{content:"";position:absolute;inset:0;background:
@@ -108,12 +90,6 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 .hero h1{font-size:clamp(38px,6vw,68px);margin:10px 0 0;color:var(--text);}
 .hero h1 .u{color:var(--orange);}
 .hero .sub{color:var(--dim);font-size:clamp(16px,2vw,19px);max-width:33ch;margin:14px 0 0;}
-.searchbar{margin-top:20px;background:var(--panel);border:1px solid var(--edge);border-radius:var(--r);padding:10px;display:grid;grid-template-columns:1fr 1fr auto;gap:10px;box-shadow:0 30px 60px -30px rgba(0,0,0,.55);}
-.field{display:flex;flex-direction:column;gap:3px;padding:8px 12px;border-radius:11px;background:var(--field);border:1px solid var(--edge);}
-.field label{font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;font-size:11px;color:var(--dim);}
-.field select,.field input{background:transparent;border:none;color:var(--text);font-family:var(--fb);font-size:16px;outline:none;width:100%;}
-.field select option{color:#000;}
-.searchbar .btn{justify-content:center;}
 .hero-note{margin-top:14px;font-size:14px;color:var(--dim);display:flex;align-items:center;gap:8px;}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(255,90,54,.18);}
 .stores{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;}
@@ -126,7 +102,6 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 .store span b{font-family:var(--fd);font-weight:700;font-size:17px;letter-spacing:.3px;line-height:1;}
 @media(max-width:940px){
   .hero-grid{grid-template-columns:1fr;}
-  .searchbar{grid-template-columns:1fr;}
   .hero-visual{margin-top:24px;}
   .phone{width:100%;max-width:360px;height:auto;background:transparent;border:none;box-shadow:none;padding:0;margin:0 auto;border-radius:0;}
   .phone .notch{display:none;}
