@@ -75,13 +75,23 @@ header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);backgroun
 :root[data-theme="dark"] .theme-tgl .i-moon{display:none;}
 :root[data-theme="dark"] .theme-tgl .i-sun{display:block;}
 .nav-cta{font-size:15px;padding:11px 20px;}
-.mobile-cta{display:none;}
-@media(max-width:860px){
-  .nav-links{display:none;}
-  .nav-cta{display:none;}
-  .mobile-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:11px 16px;padding-bottom:calc(11px + env(safe-area-inset-bottom));background:var(--nav);backdrop-filter:blur(12px);border-top:1px solid var(--edge);}
-  .mobile-cta .btn{flex:1;justify-content:center;}
-  body{padding-bottom:74px;}
+@media(max-width:860px){.nav-links{display:none;}.nav-cta{display:none;}}
+
+/* Barre de recherche flottante persistante (reprise du prototype) */
+body{padding-bottom:98px;}
+.floatbar{position:fixed;left:0;right:0;bottom:18px;z-index:60;display:flex;justify-content:center;padding:0 16px;pointer-events:none;}
+.fbar{pointer-events:auto;display:flex;align-items:center;gap:2px;background:var(--panel);border:1px solid var(--edge);border-radius:999px;padding:7px 7px 7px 8px;box-shadow:0 18px 44px -16px rgba(0,0,0,.4);max-width:660px;width:100%;cursor:pointer;transition:box-shadow .2s,transform .2s;}
+.fbar:hover{box-shadow:0 24px 52px -16px rgba(0,0,0,.5);transform:translateY(-1px);}
+.fbar-f{display:flex;align-items:center;gap:8px;color:var(--text);font-size:15px;font-weight:600;padding:8px 14px;white-space:nowrap;flex:1;}
+.fbar-f svg{color:var(--orange);flex-shrink:0;}
+.fbar-sep{width:1px;height:22px;background:var(--edge);flex-shrink:0;}
+.fbar-btn{border-radius:999px;padding:12px 20px;font-size:15px;white-space:nowrap;flex-shrink:0;}
+@media(max-width:640px){
+  .floatbar{bottom:0;padding:9px 12px;padding-bottom:calc(9px + env(safe-area-inset-bottom));background:var(--nav);backdrop-filter:blur(10px);border-top:1px solid var(--edge);}
+  .fbar{box-shadow:none;border:none;background:transparent;padding:0;gap:0;}
+  .fbar-f,.fbar-sep{display:none;}
+  .fbar-btn{flex:1;justify-content:center;padding:14px;font-size:16px;}
+  .fbar-btxt::after{content:" un coach";}
 }
 
 /* ===== Hero ===== */
@@ -480,7 +490,16 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
   </section>
 </main>
 
-<div class="mobile-cta"><a href="#waitlist" class="btn btn-primary">Être prévenu du lancement</a></div>
+<div class="floatbar">
+  <div class="fbar" id="floatSearch" role="button" tabindex="0" aria-label="Rechercher un coach">
+    <span class="fbar-f"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4h8v3a4 4 0 0 1-8 0V4z"/><path d="M8 5H6a2 2 0 0 0 2 3M16 5h2a2 2 0 0 1-2 3"/><path d="M12 11v4M9 20h6M10 20v-2h4v2"/></svg><span>Quel sport ?</span></span>
+    <span class="fbar-sep"></span>
+    <span class="fbar-f"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-6-5.5-6-10a6 6 0 0 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg><span>Où ?</span></span>
+    <span class="fbar-sep"></span>
+    <span class="fbar-f"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg><span>Date</span></span>
+    <button class="btn btn-primary fbar-btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span class="fbar-btxt">Rechercher</span></button>
+  </div>
+</div>
 
 <footer class="ft">
   <div class="wrap">
@@ -537,6 +556,10 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
   // Search -> renvoie vers la liste d'attente (pas de faux résultats réels)
   var sf=document.getElementById('searchForm');
   if(sf){ sf.addEventListener('submit',function(e){e.preventDefault();var w=document.getElementById('waitlist');if(w)w.scrollIntoView({behavior:'smooth'});}); }
+
+  // Barre de recherche flottante -> liste d'attente
+  var fb=document.getElementById('floatSearch');
+  if(fb){ fb.addEventListener('click',function(){var w=document.getElementById('waitlist');if(w)w.scrollIntoView({behavior:'smooth'});}); }
 })();
 </script>
 
