@@ -121,7 +121,8 @@ body{padding-bottom:98px;}
   .hero-visual{margin-top:24px;}
   .phone{width:100%;max-width:360px;height:auto;background:transparent;border:none;box-shadow:none;padding:0;margin:0 auto;border-radius:0;}
   .phone .notch{display:none;}
-  .screen{height:auto;border-radius:20px;border:1px solid #26303c;box-shadow:0 24px 50px -30px rgba(0,0,0,.45);padding:16px 14px;gap:10px;}
+  .screen{height:auto;border-radius:20px;border:1px solid #26303c;box-shadow:0 24px 50px -30px rgba(0,0,0,.45);padding:16px 14px 0;gap:10px;}
+  .s-nav{margin-left:-14px;margin-right:-14px;}
 }
 
 /* ===== Phone (objet sombre, identique dans les 2 thèmes) ===== */
@@ -151,6 +152,38 @@ body{padding-bottom:98px;}
 .s-confirm .chk{width:26px;height:26px;border-radius:50%;background:var(--green);color:#04150d;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;font-size:14px;}
 .s-confirm-t b{display:block;font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:13px;color:#DFF3E9;line-height:1.15;}
 .s-confirm-t small{color:#7FBBA0;font-size:11px;}
+
+/* ===== Maquette app v2 (plus premium) ===== */
+.phone{height:552px;}
+.screen{padding:11px 12px 0;gap:9px;}
+.s-status{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#8a94a3;font-weight:600;padding:2px 4px 1px;}
+.s-status .s-sig{width:30px;height:10px;background:#4a5563;border-radius:2px;opacity:.55;}
+.s-top{align-items:center;}
+.s-ava{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#ff7a45,#f2451e);color:#fff;font-family:var(--fd);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;letter-spacing:.5px;}
+.s-search{display:flex;align-items:center;gap:8px;}
+.s-search svg{color:#8a94a3;flex-shrink:0;}
+.s-chips{flex-wrap:nowrap;overflow:hidden;}
+.nm{font-family:var(--fd);font-weight:700;text-transform:uppercase;font-size:16px;letter-spacing:.4px;line-height:1;color:#EEF0EC;}
+.meta{font-size:12px;color:#8a94a3;margin-top:3px;}
+.rt{color:#F4C04E;font-weight:600;}
+.price{font-family:var(--fb);font-weight:700;font-size:12px;color:#EEF0EC;text-align:right;line-height:1.05;white-space:nowrap;}
+.price b{font-family:var(--fd);font-weight:800;font-size:21px;letter-spacing:.5px;}
+.price span{display:block;font-size:10px;color:#8a94a3;font-weight:600;text-transform:none;}
+.s-av{position:relative;width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#3a4658,#242e3b);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:800;color:#EEF0EC;font-size:17px;flex-shrink:0;}
+.s-av.small{width:38px;height:38px;font-size:15px;}
+.s-verif{position:absolute;right:-3px;bottom:-3px;width:16px;height:16px;border-radius:50%;background:var(--green);color:#04150d;font-size:10px;font-style:normal;display:flex;align-items:center;justify-content:center;border:2px solid #161c25;font-weight:800;}
+.s-feat{position:relative;background:#1f2732;border:1px solid #2c3745;border-radius:16px;overflow:hidden;}
+.s-feat-banner{height:44px;background:linear-gradient(115deg,#f2451e,#8a2df2);}
+.s-feat-tag{position:absolute;top:9px;left:11px;background:rgba(0,0,0,.32);color:#fff;font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:10px;padding:3px 9px;border-radius:999px;}
+.s-feat-row{display:flex;align-items:flex-start;gap:10px;padding:0 12px;margin-top:-14px;}
+.s-feat-row .s-av{border:2px solid #1f2732;}
+.s-feat-info{flex:1;min-width:0;padding-top:16px;}
+.s-feat-btn{margin:10px 12px 12px;background:var(--orange);color:#fff;font-family:var(--fd);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:13px;text-align:center;padding:10px;border-radius:11px;}
+.coach{background:#161c25;align-items:center;}
+.booked{color:var(--green);font-weight:600;font-size:12px;}
+.s-nav{margin-top:auto;display:flex;justify-content:space-around;align-items:center;border-top:1px solid #2c3745;padding:10px 4px;background:#10141b;margin-left:-12px;margin-right:-12px;}
+.s-nav-i{color:#4a5563;display:flex;}
+.s-nav-i.on{color:var(--orange);}
 @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
 .demo-note{text-align:center;margin-top:12px;font-size:12px;color:var(--dim);letter-spacing:.3px;}
 
@@ -333,22 +366,35 @@ footer.ft{background:#0E1218;border-top:1px solid #2C3745;padding:56px 0 34px;co
           <div class="phone">
             <div class="notch"></div>
             <div class="screen">
-              <div class="s-top"><span class="loc"><i class="pin"></i>Marseille</span><span class="s-brand">GYM</span></div>
-              <div class="s-search">Coach de football, aujourd'hui</div>
-              <div class="s-chips"><span class="s-chip on">Aujourd'hui</span><span class="s-chip">Mieux notés</span></div>
-              <div class="coach">
-                <div class="av">TF</div>
-                <div class="info"><div class="nm">Thomas F.</div><div class="meta"><span class="rt">★ 4.8</span> · Technique, 8e</div></div>
-                <div class="price">35€<span>séance</span></div>
+              <div class="s-status"><span>9:41</span><span class="s-sig"></span></div>
+              <div class="s-top">
+                <span class="loc"><i class="pin"></i>Marseille</span>
+                <span class="s-ava">JC</span>
+              </div>
+              <div class="s-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>Coach de football, aujourd'hui</div>
+              <div class="s-chips"><span class="s-chip on">Football</span><span class="s-chip">Basket</span><span class="s-chip">Combat</span><span class="s-chip">Forme</span></div>
+              <div class="s-feat">
+                <div class="s-feat-banner"><span class="s-feat-tag">Top noté à Marseille</span></div>
+                <div class="s-feat-row">
+                  <div class="s-av">TF<i class="s-verif">✓</i></div>
+                  <div class="s-feat-info">
+                    <div class="nm">Thomas F.</div>
+                    <div class="meta"><span class="rt">★ 4.8</span> · Football · 8e</div>
+                  </div>
+                  <div class="price"><b>35</b>€<span>/ séance</span></div>
+                </div>
+                <div class="s-feat-btn">Voir les créneaux</div>
               </div>
               <div class="coach">
-                <div class="av">LV</div>
-                <div class="info"><div class="nm">Léa V.</div><div class="meta"><span class="rt">★ 4.7</span> · Prépa, 2e</div></div>
-                <div class="price">28€<span>séance</span></div>
+                <div class="s-av small">LV<i class="s-verif">✓</i></div>
+                <div class="info"><div class="nm">Léa V.</div><div class="meta"><span class="booked">✓ Réservé · code 4F7A2C</span></div></div>
+                <div class="price"><b>28</b>€<span>/ séance</span></div>
               </div>
-              <div class="s-confirm">
-                <span class="chk">✓</span>
-                <div class="s-confirm-t"><b>Réservation confirmée</b><small>Code coach : 4F7A2C</small></div>
+              <div class="s-nav">
+                <span class="s-nav-i on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+                <span class="s-nav-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span>
+                <span class="s-nav-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></span>
+                <span class="s-nav-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
               </div>
             </div>
           </div>
