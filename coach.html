@@ -114,6 +114,9 @@ form button:disabled{opacity:.6;cursor:wait;transform:none}
 .foot a{color:var(--muted)}
 .foot a:hover{color:var(--ink)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+fieldset label+label{margin-top:.875rem}
+.hint{margin-top:.5rem;font-size:.8125rem;line-height:1.5;color:var(--muted)}
+input[type=file]{padding:.625rem .75rem;font-size:.875rem;cursor:pointer}
 </style>
 </head>
 <body>
@@ -136,8 +139,8 @@ form button:disabled{opacity:.6;cursor:wait;transform:none}
   <div class="wrap">
     <div class="sheet">
 <ol class="steps">
-<li><b>Tu remplis ce formulaire.</b> 2 minutes, pas de mot de passe.</li>
-<li><b>L'équipe GYM vérifie ton profil</b> et ton diplôme.</li>
+<li><b>Tu remplis ce formulaire</b> et tu joins ta pièce d'identité et ton diplôme (une photo nette suffit). 2 minutes, pas de mot de passe.</li>
+<li><b>L'équipe GYM vérifie ton profil</b>, ton identité et ton diplôme.</li>
 <li><b>Tu reçois ton code GYM à 6 chiffres</b> par email : dans l'app, tu touches « Tu es coach », tu le saisis une fois, puis tu crées ton code perso.</li>
 </ol>
 
@@ -179,6 +182,13 @@ form button:disabled{opacity:.6;cursor:wait;transform:none}
 </div>
 <div class="note" id="nodiploma" hidden>En France, encadrer contre rémunération demande un diplôme. Sans diplôme, tu peux coacher sur GYM via un club partenaire : c'est le club qui t'inscrit.</div>
 
+<fieldset>
+<legend>Tes justificatifs</legend>
+<label>Pièce d'identité <small>(carte d'identité ou passeport, recto et verso si besoin)</small><input type="file" name="id_card" accept="image/jpeg,image/png,image/webp,application/pdf" multiple></label>
+<label>Diplôme <small>(un ou plusieurs fichiers)</small><input type="file" name="diploma_files" accept="image/jpeg,image/png,image/webp,application/pdf" multiple></label>
+<p class="hint">Photo ou PDF, 10 Mo au plus par fichier. Ta pièce d'identité n'est vue que par l'équipe GYM et elle est supprimée au plus tard 7 jours après la validation de ton compte.</p>
+</fieldset>
+
 <label>Un mot sur toi <small>(facultatif)</small><textarea name="message" rows="4" maxlength="1000" placeholder="Ton parcours, ton public, ce que tu proposes."></textarea></label>
 
 <label class="hp" aria-hidden="true">Site web<input name="website" tabindex="-1" autocomplete="off"></label>
@@ -192,6 +202,7 @@ form button:disabled{opacity:.6;cursor:wait;transform:none}
 <div class="done" id="done" hidden>
 <h2>Demande envoyée</h2>
 <p>Merci ! Tu vas recevoir un email de confirmation. Dès que l'équipe GYM a validé ton profil, tu reçois ton code GYM à 6 chiffres.</p>
+<p class="note" id="upfail" hidden></p>
 <p>En attendant, tu peux déjà installer l'app GetYourMentor. Ton espace coach s'ouvrira avec ton code GYM.</p>
 </div>
     </div>
@@ -210,7 +221,23 @@ form button:disabled{opacity:.6;cursor:wait;transform:none}
   var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVsZWZoa255ZHd2ZW5kenlkdGdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTI1MzMsImV4cCI6MjA5OTM2ODUzM30.NbMX8qEYHYY8vVVm1Grq7ET8MTDEzTicThXCMBYD3qg';
   var f = document.getElementById('f'), err = document.getElementById('err'),
       btn = document.getElementById('send'), nod = document.getElementById('nodiploma');
+  var DOCS = 'https://elefhknydwvendzydtgi.supabase.co/functions/v1/coach-documents', MAX = 10 * 1024 * 1024;
   f.diploma.addEventListener('change', function () { nod.hidden = f.diploma.value !== 'none'; });
+  // Envoie les justificatifs un par un ; renvoie les noms des fichiers refusés.
+  function sendFiles(token, files) {
+    var failed = [], i = 0;
+    function next() {
+      if (i >= files.length) return Promise.resolve(failed);
+      var item = files[i++], fd = new FormData();
+      btn.textContent = 'Envoi des justificatifs ' + i + '/' + files.length + '…';
+      fd.append('token', token); fd.append('doc_type', item[0]); fd.append('file', item[1]);
+      return fetch(DOCS, { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + KEY }, body: fd })
+        .then(function (r) { if (!r.ok) failed.push(item[1].name); })
+        .catch(function () { failed.push(item[1].name); })
+        .then(next);
+    }
+    return next();
+  }
   function fail(msg) { err.textContent = msg; btn.disabled = false; btn.textContent = 'Envoyer ma demande'; }
   f.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -223,6 +250,14 @@ form button:disabled{opacity:.6;cursor:wait;transform:none}
     if (!sports.length) return fail('Choisis au moins une discipline.');
     if (!v('diploma')) return fail('Indique ton diplôme.');
     if (v('diploma') === 'none') return fail('Sans diplôme, l\'inscription passe par un club partenaire.');
+    var files = [].slice.call(f.id_card.files).map(function (x) { return ['id_card', x]; })
+      .concat([].slice.call(f.diploma_files.files).map(function (x) { return ['diploma', x]; }));
+    if (!f.id_card.files.length) return fail('Joins ta pièce d\'identité.');
+    if (!f.diploma_files.files.length) return fail('Joins ton diplôme.');
+    if (files.length > 8) return fail('8 fichiers au plus.');
+    for (var i = 0; i < files.length; i++) {
+      if (files[i][1].size > MAX) return fail('« ' + files[i][1].name + ' » dépasse 10 Mo : prends une photo moins lourde ou un PDF.');
+    }
     if (!f.consent.checked) return fail('Coche la case d\'accord pour envoyer ta demande.');
     btn.disabled = true; btn.textContent = 'Envoi…';
     fetch(URL, {
@@ -235,7 +270,17 @@ form button:disabled{opacity:.6;cursor:wait;transform:none}
       })
     }).then(function (r) { return r.json().catch(function () { return {}; }); })
       .then(function (d) {
-        if (d.ok) { f.hidden = true; document.getElementById('done').hidden = false; window.scrollTo(0, 0); return; }
+        if (d.ok) {
+          return sendFiles(d.upload_token, files).then(function (failed) {
+            f.hidden = true; document.getElementById('done').hidden = false; window.scrollTo(0, 0);
+            if (failed.length) {
+              var n = document.getElementById('upfail');
+              n.textContent = 'Ta demande est bien enregistrée, mais ' + (failed.length > 1 ? 'ces fichiers ne sont pas passés' : 'ce fichier n\'est pas passé') +
+                ' : ' + failed.join(', ') + '. Renvoie-les avec le lien « Ajouter ou compléter mes justificatifs » de l\'email de confirmation.';
+              n.hidden = false;
+            }
+          });
+        }
         if (d.reason === 'already_open') return fail('Une demande est déjà en cours pour cet email. Tu recevras ton code dès sa validation.');
         if (d.reason === 'already_coach') return fail('Cet email a déjà un compte coach : connecte-toi dans l\'app.');
         fail('Envoi impossible. Vérifie tes informations ou réessaie dans un instant.');
