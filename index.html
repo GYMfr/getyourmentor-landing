@@ -122,7 +122,8 @@ p,li,blockquote,dd,label{text-wrap:pretty}
 .enter{animation:up .8s var(--ease) both;animation-delay:var(--d,0s)}
 @keyframes marquee{to{transform:translateX(-50%)}}
 @keyframes hint{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(7px);opacity:1}}
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@-webkit-keyframes spin{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}
 
 /* ===== Navigation ===== */
 .nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .5s ease}
@@ -158,7 +159,7 @@ p,li,blockquote,dd,label{text-wrap:pretty}
 .hero-cta>.btn{margin-top:1rem;width:100%}
 .seal-anim{position:relative;aspect-ratio:1;user-select:none;margin:0 auto;width:min(62vw,260px);animation:pop 1.1s ease .3s both}
 .seal-anim img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
-.seal-anim .ring{animation:spin 24s linear infinite;will-change:transform}
+.seal-anim .ring{-webkit-animation:spin 24s linear infinite;animation:spin 24s linear infinite;transform-origin:50% 50%}
 .hint{margin-top:3.5rem;display:flex;align-items:center;gap:.75rem;color:var(--cream-55)}
 .hint .eyebrow{color:inherit}
 .hint i{display:block;width:1px;height:1.75rem;background:var(--cream-40);animation:hint 2.4s ease-in-out infinite}
@@ -311,6 +312,9 @@ p,li,blockquote,dd,label{text-wrap:pretty}
 /* ===== Scènes photo ===== */
 .bgscene{position:relative;min-height:100svh;overflow:hidden;background:var(--ink)}
 .bgscene .veil{opacity:.6}
+.veil img{position:absolute;inset:0;opacity:0;transition:opacity 1s ease-out}
+.veil img.on{opacity:1}
+.veil img:first-child:last-child{opacity:1}
 .bgscene .in{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:7rem;padding-bottom:7rem}
 .words{margin-top:2rem}
 .words .xl{font-size:clamp(2.2rem,8vw,6rem);color:var(--cream-90)}
@@ -409,7 +413,8 @@ p,li,blockquote,dd,label{text-wrap:pretty}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-  .seal-anim .ring,.ticker-in,.hint i{animation:none!important}
+  .ticker-in,.hint i{animation:none!important}
+  .seal-anim .ring{animation:spin 48s linear infinite!important}
 }
 </style>
 <script>document.documentElement.classList.add('js');addEventListener('error',function(){document.documentElement.classList.remove('js')});setTimeout(function(){if(window.__gym)return;document.documentElement.classList.remove('js')},4000)</script>
@@ -482,7 +487,7 @@ p,li,blockquote,dd,label{text-wrap:pretty}
         </article>
         <article class="card rv" style="--d:.2s">
           <div class="ph"><img class="photo" src="img/lp-p3-clubs.jpg" alt="Une structure sportive et ses encadrants" loading="lazy" decoding="async" width="1024" height="1280"></div>
-          <div class="bd"><p class="eyebrow accent-deep">Club ou salle</p><h3>Structurer l’accompagnement à l’échelle de la structure.</h3><a href="#professionnels" class="btn btn-dark">Je représente une structure</a></div>
+          <div class="bd"><p class="eyebrow accent-deep">Club ou salle</p><h3>Développer l’accompagnement de vos sportifs.</h3><a href="#professionnels" class="btn btn-dark">Je représente une structure</a></div>
         </article>
       </div>
     </div>
@@ -512,19 +517,20 @@ p,li,blockquote,dd,label{text-wrap:pretty}
   <section class="sec px surface" id="sportifs">
     <div class="wrap">
       <div class="marker"><i></i><span class="eyebrow">Le parcours dans l’application</span></div>
-      <h2 class="xl big-title rv">Réserve une séance qui te correspond.</h2>
+      <h2 class="xl big-title rv">Réserve une séance adaptée à tes objectifs.</h2>
       <p class="muted" style="margin-top:1.25rem;max-width:36rem">De la découverte de l’application à la réservation, chaque étape est claire.</p>
       <p class="note" style="margin-top:.75rem">Aperçu de l’application : profils et tarifs de démonstration.</p>
 
       <div class="journey">
         <ol>
-          <li class="jstep on" tabindex="0" aria-current="step" data-alt="Écran d’ouverture GetYourMentor avec le logo GYM."><p class="eyebrow">01 / 07</p><h3>Ouvre GetYourMentor</h3><p>Commence ton parcours depuis l’application.</p><div class="mob"></div></li>
-          <li class="jstep" tabindex="0" data-alt="Recherche : Fitness, Marseille, aujourd’hui."><p class="eyebrow">02 / 07</p><h3>Trouve ce qui te correspond</h3><p>Choisis ton sport et précise ton objectif.</p><div class="mob"></div></li>
-          <li class="jstep" tabindex="0" data-alt="Résultats : Camille Roux et Marco Delmas."><p class="eyebrow">03 / 07</p><h3>Découvre les bons profils</h3><p>Compare les approches, les spécialités et les disponibilités.</p><div class="mob"></div></li>
-          <li class="jstep" tabindex="0" data-alt="Créneau de 18 h avec Camille Roux, 30 €."><p class="eyebrow">04 / 07</p><h3>Choisis ta séance</h3><p>Sélectionne le format, la date et l’horaire qui te conviennent.</p><div class="mob"></div></li>
-          <li class="jstep" tabindex="0" data-alt="Récapitulatif : séance privatisée, total 30 €."><p class="eyebrow">05 / 07</p><h3>Vérifie les détails</h3><p>Retrouve toutes les informations importantes avant de confirmer.</p><div class="mob"></div></li>
-          <li class="jstep" tabindex="0" data-alt="Paiement par carte, total 30 €."><p class="eyebrow">06 / 07</p><h3>Paie en toute clarté</h3><p>Le montant affiché correspond au prix réel de ta réservation.</p><div class="mob"></div></li>
-          <li class="jstep" tabindex="0" data-alt="Réservation confirmée avec numéro de réservation."><p class="eyebrow">07 / 07</p><h3>Ta séance est réservée</h3><p>Tu sais maintenant quand, où et avec qui tu vas avancer.</p><div class="mob"></div></li>
+          <li class="jstep on" tabindex="0" aria-current="step" data-alt="Écran d’ouverture GetYourMentor avec le logo GYM."><p class="eyebrow">01 / 08</p><h3>Ouvre GetYourMentor</h3><p>Commence ton parcours depuis l’application.</p><div class="mob"></div></li>
+          <li class="jstep" tabindex="0" data-alt="Accueil : des séances disponibles près de toi, maintenant."><p class="eyebrow">02 / 08</p><h3>Vois ce qui est près de toi</h3><p>Des séances à proximité, réservables dans l’instant.</p><div class="mob"></div></li>
+          <li class="jstep" tabindex="0" data-alt="Recherche : Fitness, Marseille, aujourd’hui."><p class="eyebrow">03 / 08</p><h3>Trouve ce qui te correspond</h3><p>Choisis ton sport et précise ton objectif.</p><div class="mob"></div></li>
+          <li class="jstep" tabindex="0" data-alt="Résultats : Camille Roux et Marco Delmas."><p class="eyebrow">04 / 08</p><h3>Découvre les bons profils</h3><p>Compare les approches, les spécialités et les disponibilités.</p><div class="mob"></div></li>
+          <li class="jstep" tabindex="0" data-alt="Créneau de 18 h avec Camille Roux, 30 €."><p class="eyebrow">05 / 08</p><h3>Choisis ta séance</h3><p>Sélectionne le format, la date et l’horaire qui te conviennent.</p><div class="mob"></div></li>
+          <li class="jstep" tabindex="0" data-alt="Récapitulatif : séance privatisée, total 30 €."><p class="eyebrow">06 / 08</p><h3>Vérifie les détails</h3><p>Retrouve toutes les informations importantes avant de confirmer.</p><div class="mob"></div></li>
+          <li class="jstep" tabindex="0" data-alt="Paiement par carte, total 30 €."><p class="eyebrow">07 / 08</p><h3>Paie en toute clarté</h3><p>Le montant affiché correspond au prix réel de ta réservation.</p><div class="mob"></div></li>
+          <li class="jstep" tabindex="0" data-alt="Réservation confirmée avec numéro de réservation."><p class="eyebrow">08 / 08</p><h3>Ta séance est réservée</h3><p>Tu sais maintenant quand, où et avec qui tu vas avancer.</p><div class="mob"></div></li>
         </ol>
 
         <div class="jmedia">
@@ -533,6 +539,18 @@ p,li,blockquote,dd,label{text-wrap:pretty}
               <div class="glass"><div class="island"></div>
                 <div class="view" id="screens">
                   <div class="scr on"><div class="s s-open"><img src="img/gym-cream.png" alt=""><p>Trouve ton coach maintenant</p><div class="s-cta">Commencer</div></div></div>
+
+
+                  <div class="scr"><div class="s">
+                    <div class="s-top"><div><b>Autour de toi</b><img src="img/gym-ink.png" alt=""></div><small>Marseille 7e · À moins de 3 km</small></div>
+                    <div class="chips" style="padding:.5rem 1rem 0"><span class="on">Maintenant</span><span>Aujourd’hui</span><span>Ce week-end</span></div>
+                    <p class="s-h">Disponibles tout de suite</p>
+                    <div class="mentors">
+                      <div class="mentor on"><img src="img/app-mentor-fit-1.jpg" alt="" loading="lazy"><div><b>Renforcement &amp; HIIT</b><span>Camille Roux · 450 m</span><em><i class="star">★</i> 4,9 · Dans 25 min</em></div></div>
+                      <div class="mentor"><img src="img/app-mentor-fit-2.jpg" alt="" loading="lazy"><div><b>Musculation &amp; prépa</b><span>Marco Delmas · 1,2 km</span><em><i class="star">★</i> 4,7 · Dans 1 h</em></div></div>
+                      <div class="mentor"><img src="img/lp-p3-collectif.jpg" alt="" loading="lazy"><div><b>Cardio collectif</b><span>Salle Phocéa · 2,1 km</span><em>Ce soir · 19:00</em></div></div>
+                    </div>
+                  </div></div>
 
                   <div class="scr"><div class="s">
                     <div class="s-top"><div><b>Rechercher</b><img src="img/gym-ink.png" alt=""></div></div>
@@ -611,14 +629,19 @@ p,li,blockquote,dd,label{text-wrap:pretty}
   </section>
 
   <section class="bgscene">
-    <div class="veil"><img class="photo" src="img/lp-p3-collectif.jpg" alt="Différents moments d’une progression sportive" loading="lazy" decoding="async"></div>
+    <div class="veil" id="wordBg">
+      <img class="photo on" src="img/lp-p3-sportifs.jpg" alt="" loading="lazy" decoding="async">
+      <img class="photo" src="img/lp-p3-collectif.jpg" alt="" loading="lazy" decoding="async">
+      <img class="photo" src="img/lp-p3-pros.jpg" alt="" loading="lazy" decoding="async">
+      <img class="photo" src="img/lp-p3-clubs.jpg" alt="" loading="lazy" decoding="async">
+    </div>
     <div class="wrap px in">
       <p class="eyebrow accent">Le progrès n’est pas linéaire</p>
       <div class="words">
-        <p class="xl rv">Comprendre.</p>
-        <p class="xl rv" style="--d:.14s">Répéter.</p>
-        <p class="xl rv" style="--d:.28s">Ajuster.</p>
-        <p class="xl rv" style="--d:.42s">Progresser.</p>
+        <p class="xl rv" data-bg="0">Comprendre.</p>
+        <p class="xl rv" style="--d:.14s" data-bg="1">Répéter.</p>
+        <p class="xl rv" style="--d:.28s" data-bg="2">Ajuster.</p>
+        <p class="xl rv" style="--d:.42s" data-bg="3">Progresser.</p>
       </div>
       <p class="coda rv" style="--d:.7s">La bonne méthode compte. La bonne relation aussi.</p>
     </div>
@@ -634,7 +657,7 @@ p,li,blockquote,dd,label{text-wrap:pretty}
         <p class="lead rv" style="--d:.12s">GetYourMentor aide les professionnels à rendre leur expertise plus visible, leurs séances plus lisibles et leur activité plus simple à structurer.</p>
         <div class="aud">
           <div class="rv" style="--d:.18s"><p class="eyebrow accent-deep">Coachs</p><p>Valorise ta méthode et rencontre des sportifs qui recherchent réellement ton expertise.</p></div>
-          <div class="rv" style="--d:.26s"><p class="eyebrow accent-deep">Clubs et salles</p><p>Donne à ta structure un cadre plus clair pour organiser les séances, les encadrants et les parcours sportifs.</p></div>
+          <div class="rv" style="--d:.26s"><p class="eyebrow accent-deep">Clubs et salles</p><p>Développe tes revenus en mettant en avant tes coachs et tes installations.</p></div>
         </div>
         <a href="coach.html" class="btn btn-accent">Créer mon profil professionnel</a>
       </div>
@@ -803,6 +826,10 @@ p,li,blockquote,dd,label{text-wrap:pretty}
   jsteps.forEach(function(li,i){li.addEventListener('focus',function(){setJourney(i);});});
   scrolly(jsteps,setJourney);
   setJourney(0);
+
+  // Bandeau « progrès » : le fond change avec le mot au centre de l'écran
+  var wbg=[].slice.call(document.querySelectorAll('#wordBg img')),wds=[].slice.call(document.querySelectorAll('[data-bg]'));
+  scrolly(wds,function(i){wbg.forEach(function(m,k){m.classList.toggle('on',k===i);});});
 
   // Préinscription : table waitlist_signups (insertion publique, lecture réservée à l'équipe)
   var modal=document.getElementById('prereg'),form=document.getElementById('preregForm'),input=document.getElementById('preregEmail');
