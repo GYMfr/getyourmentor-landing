@@ -315,11 +315,30 @@ p,li,blockquote,dd,label{text-wrap:pretty}
 .veil img{position:absolute;inset:0;opacity:0;transition:opacity 1s ease-out}
 .veil img.on{opacity:1}
 .veil img:first-child:last-child{opacity:1}
-.bgscene .in{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:7rem;padding-bottom:7rem}
+.bgscene .wrap.in{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:7rem;padding-bottom:7rem}
 .words{margin-top:2rem}
 .words .xl{font-size:clamp(2.2rem,8vw,6rem);color:var(--cream-90)}
 .words .xl+.xl{margin-top:.25rem}
 .coda{margin-top:3rem;max-width:42rem;font-family:var(--display);font-weight:800;font-size:clamp(1.2rem,2.6vw,2rem);text-transform:uppercase;line-height:1.25;letter-spacing:-.025em;color:var(--accent)}
+.coda-block{display:flex;flex-direction:column;align-items:center;text-align:center}
+.coda-block .coda{margin-top:0;max-width:48rem;font-size:clamp(1.5rem,3.6vw,3rem);color:var(--cream)}
+.coda-block .never{margin-top:1.5rem;font-family:var(--display);font-weight:800;font-size:clamp(1rem,2vw,1.4rem);letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+.coda-block .seal{margin-top:2rem;width:96px;height:96px;opacity:.95}
+/* Bandeau épinglé : l'écran reste, seuls l'image et le mot changent (JS) */
+.js .pinned{height:calc(100svh * 5);overflow:visible}
+.js .pinned .pin{position:sticky;top:0;height:100svh;overflow:hidden}
+.js .pinned .veil img{transition:opacity 1s ease-out,transform 6s ease-out;transform:scale(1.06)}
+.js .pinned .veil img.on{transform:scale(1)}
+.js .pinned .words-in{position:absolute;inset:0;min-height:0;justify-content:center;padding-top:0;padding-bottom:0}
+.js .pinned .words{position:relative;height:1.1em;font-size:clamp(2.2rem,8vw,6rem)}
+.js .pinned .words .xl{position:absolute;left:0;top:0;margin:0;opacity:0;transform:translateY(.35em);transition:opacity .6s ease,transform .6s ease}
+.js .pinned .words .xl.on{opacity:1;transform:none}
+.js .pinned .coda-block{position:absolute;inset:0;z-index:2;justify-content:flex-start;padding-top:min(22vh,11rem);opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;pointer-events:none}
+.js .pinned.ended .coda-block{opacity:1;transform:none}
+.js .pinned.ended .words-in{opacity:0;transition:opacity .5s ease}
+.js .premium.pinned{height:calc(100svh * 1.6)}
+.js .premium.pinned .veil img{transform:scale(1.12);transition:transform .1s linear}
+.premium .veil img{object-position:50% 32%}
 
 /* Bandeau de signalétique */
 .ticker{overflow:hidden;background:var(--ink);color:var(--cream)}
@@ -356,7 +375,7 @@ p,li,blockquote,dd,label{text-wrap:pretty}
 
 /* Scène premium */
 .premium .veil{opacity:.7}
-.premium .in{max-width:56rem;align-items:center;text-align:center}
+.premium .wrap.in{max-width:56rem;align-items:center;text-align:center}
 .premium .seal{width:104px;height:104px;opacity:.9}
 .premium .xl{margin-top:2.5rem;font-size:clamp(1.8rem,5vw,3.8rem);color:var(--cream)}
 .premium .btn{margin-top:2.5rem}
@@ -628,22 +647,28 @@ p,li,blockquote,dd,label{text-wrap:pretty}
     </div>
   </section>
 
-  <section class="bgscene">
-    <div class="veil" id="wordBg">
-      <img class="photo on" src="img/lp-p3-sportifs.jpg" alt="" loading="lazy" decoding="async">
-      <img class="photo" src="img/lp-p3-collectif.jpg" alt="" loading="lazy" decoding="async">
-      <img class="photo" src="img/lp-p3-pros.jpg" alt="" loading="lazy" decoding="async">
-      <img class="photo" src="img/lp-p3-clubs.jpg" alt="" loading="lazy" decoding="async">
-    </div>
-    <div class="wrap px in">
-      <p class="eyebrow accent">Le progrès n’est pas linéaire</p>
-      <div class="words">
-        <p class="xl rv" data-bg="0">Comprendre.</p>
-        <p class="xl rv" style="--d:.14s" data-bg="1">Répéter.</p>
-        <p class="xl rv" style="--d:.28s" data-bg="2">Ajuster.</p>
-        <p class="xl rv" style="--d:.42s" data-bg="3">Progresser.</p>
+  <section class="bgscene pinned" id="progres">
+    <div class="pin">
+      <div class="veil" id="wordBg">
+        <img class="photo on" src="img/lp-p3-pros.jpg" alt="" loading="lazy" decoding="async" style="object-position:50% 30%">
+        <img class="photo" src="img/lp-p3-collectif.jpg" alt="" loading="lazy" decoding="async">
+        <img class="photo" src="img/lp-hero.jpg" alt="" loading="lazy" decoding="async" style="object-position:50% 35%">
+        <img class="photo" src="img/lp-p3-sportifs.jpg" alt="" loading="lazy" decoding="async" style="object-position:50% 30%">
       </div>
-      <p class="coda rv" style="--d:.7s">La bonne méthode compte. La bonne relation aussi.</p>
+      <div class="wrap px in words-in">
+        <p class="eyebrow accent">Le progrès n’est pas linéaire</p>
+        <div class="words">
+          <p class="xl rv on" data-bg="0">Comprendre.</p>
+          <p class="xl rv" style="--d:.14s" data-bg="1">Répéter.</p>
+          <p class="xl rv" style="--d:.28s" data-bg="2">Ajuster.</p>
+          <p class="xl rv" style="--d:.42s" data-bg="3">Progresser.</p>
+        </div>
+      </div>
+      <div class="wrap px coda-block">
+        <p class="coda rv" style="--d:.7s">La bonne méthode compte. La bonne relation aussi.</p>
+        <p class="never rv" style="--d:.85s">Never Less</p>
+        <img class="seal rv" style="--d:1s" src="img/seal-cream.png" alt="Get Your Mentor, Sporting Club, Never Less" loading="lazy">
+      </div>
     </div>
   </section>
 
@@ -694,12 +719,14 @@ p,li,blockquote,dd,label{text-wrap:pretty}
     </div>
   </section>
 
-  <section class="bgscene premium">
-    <div class="veil"><img class="photo" src="img/lp-hero.jpg" alt="Un moment d’échange entre un mentor et un sportif" loading="lazy" decoding="async"></div>
-    <div class="wrap px in">
-      <img class="seal" src="img/seal-cream.png" alt="Get Your Mentor, Sporting Club, Never Less" loading="lazy">
-      <h2 class="xl rv">La progression devient plus claire quand elle est bien accompagnée.</h2>
-      <div class="rv" style="--d:.2s"><a href="#methode" class="btn btn-light">Comprendre notre approche</a></div>
+  <section class="bgscene premium pinned" id="premium">
+    <div class="pin">
+      <div class="veil"><img class="photo on" id="premiumBg" src="img/lp-hero.jpg" alt="Un moment d’échange entre un mentor et un sportif" loading="lazy" decoding="async"></div>
+      <div class="wrap px in">
+        <img class="seal" src="img/seal-cream.png" alt="Get Your Mentor, Sporting Club, Never Less" loading="lazy">
+        <h2 class="xl rv">La progression devient plus claire quand elle est bien accompagnée.</h2>
+        <div class="rv" style="--d:.2s"><a href="#methode" class="btn btn-light">Comprendre notre approche</a></div>
+      </div>
     </div>
   </section>
 
@@ -827,9 +854,28 @@ p,li,blockquote,dd,label{text-wrap:pretty}
   scrolly(jsteps,setJourney);
   setJourney(0);
 
-  // Bandeau « progrès » : le fond change avec le mot au centre de l'écran
+  // Bandeaux épinglés : l'écran reste fixe, l'avancement du défilement choisit
+  // l'image et le mot (progrès), puis la phrase de fin ; zoom lent (premium).
   var wbg=[].slice.call(document.querySelectorAll('#wordBg img')),wds=[].slice.call(document.querySelectorAll('[data-bg]'));
-  scrolly(wds,function(i){wbg.forEach(function(m,k){m.classList.toggle('on',k===i);});});
+  var prog=document.getElementById('progres'),prem=document.getElementById('premium'),premBg=document.getElementById('premiumBg');
+  function pinProgress(sec){var r=sec.getBoundingClientRect(),h=sec.offsetHeight-innerHeight;return h<=0?0:Math.min(1,Math.max(0,-r.top/h));}
+  var wordState=-1;
+  function onPins(){
+    if(!document.documentElement.classList.contains('js'))return;
+    var N=wds.length,p=pinProgress(prog),s=Math.min(N,Math.floor(p*(N+1)));
+    if(s!==wordState){
+      wordState=s;
+      var i=Math.min(s,N-1);
+      wds.forEach(function(w,k){w.classList.toggle('on',k===i);w.classList.add('in');});
+      wbg.forEach(function(m,k){m.classList.toggle('on',k===i);});
+      prog.classList.toggle('ended',s===N);
+      if(s===N)[].forEach.call(prog.querySelectorAll('.coda-block .rv'),function(el){el.classList.add('in');});
+    }
+    if(premBg&&!reduced){var q=pinProgress(prem);premBg.style.transform='scale('+(1.12-0.12*q).toFixed(3)+')';}
+  }
+  addEventListener('scroll',function(){requestAnimationFrame(onPins);},{passive:true});
+  addEventListener('resize',function(){wordState=-1;onPins();});
+  onPins();
 
   // Préinscription : table waitlist_signups (insertion publique, lecture réservée à l'équipe)
   var modal=document.getElementById('prereg'),form=document.getElementById('preregForm'),input=document.getElementById('preregEmail');
