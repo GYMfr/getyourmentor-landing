@@ -231,7 +231,7 @@ input[type=file]{padding:.625rem .75rem;font-size:.875rem;cursor:pointer}
     $('meta').appendChild(e);
   }
   if (!ok) { bad(); return; }
-  var cols = 'id,name,kind,sport,specialty,session_title,city,rating,reviews,price,is_verified,photo_path,next_start,about,promo_pct,promo_scope,women_only';
+  var cols = 'id,name,kind,sport,specialty,session_title,city,rating,reviews,price,is_verified,is_premium,photo_path,next_start,about,promo_pct,promo_scope,women_only';
   fetch('https://elefhknydwvendzydtgi.supabase.co/rest/v1/catalog_mentors?select=' + cols + '&id=eq.' + id, {
     headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVsZWZoa255ZHd2ZW5kenlkdGdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTI1MzMsImV4cCI6MjA5OTM2ODUzM30.NbMX8qEYHYY8vVVm1Grq7ET8MTDEzTicThXCMBYD3qg', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVsZWZoa255ZHd2ZW5kenlkdGdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTI1MzMsImV4cCI6MjA5OTM2ODUzM30.NbMX8qEYHYY8vVVm1Grq7ET8MTDEzTicThXCMBYD3qg' }
   }).then(function (r) {
@@ -250,6 +250,7 @@ input[type=file]{padding:.625rem .75rem;font-size:.875rem;cursor:pointer}
     if (p.city) meta(p.city);
     if (p.reviews > 0) meta(String(p.rating.toFixed(1)).replace('.', ',') + ' sur 5 (' + p.reviews + ' avis)');
     if (p.is_verified) meta('Profil vérifié', true);
+    if (p.is_premium) meta('Premium', true);
     if (p.women_only) meta('Séances entre femmes', true);
     if (p.about) $('about').textContent = p.about;
     if (p.photo_path) {
