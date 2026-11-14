@@ -146,6 +146,7 @@ input[type=file]{padding:.625rem .75rem;font-size:.875rem;cursor:pointer}
 </ol>
 
 <form id="f" novalidate>
+<p class="hint" id="parrain" hidden></p>
 <div class="row">
 <label>Prénom<input name="first_name" autocomplete="given-name" maxlength="60" required></label>
 <label>Nom<input name="last_name" autocomplete="family-name" maxlength="60" required></label>
@@ -224,6 +225,20 @@ input[type=file]{padding:.625rem .75rem;font-size:.875rem;cursor:pointer}
       btn = document.getElementById('send'), nod = document.getElementById('nodiploma');
   var DOCS = 'https://elefhknydwvendzydtgi.supabase.co/functions/v1/coach-documents', MAX = 10 * 1024 * 1024;
   f.diploma.addEventListener('change', function () { nod.hidden = f.diploma.value !== 'none'; });
+  // Lien de parrainage d'un coach : coach.html?parrain=CODE (gardé le temps
+  // de la visite, même si la page est rechargée).
+  var REF = '';
+  try {
+    REF = (new URLSearchParams(location.search).get('parrain') || sessionStorage.getItem('gym_parrain') || '')
+      .trim().toUpperCase();
+    if (!/^[A-Z0-9]{4,12}$/.test(REF)) REF = '';
+    if (REF) sessionStorage.setItem('gym_parrain', REF);
+  } catch (e) { REF = ''; }
+  if (REF) {
+    var pn = document.getElementById('parrain');
+    pn.textContent = 'Tu t\'inscris avec le code ambassadeur ' + REF + '.';
+    pn.hidden = false;
+  }
   // Envoie les justificatifs un par un ; renvoie les noms des fichiers refusés.
   function sendFiles(token, files) {
     var failed = [], i = 0;
@@ -267,7 +282,8 @@ input[type=file]{padding:.625rem .75rem;font-size:.875rem;cursor:pointer}
       body: JSON.stringify({
         first_name: v('first_name'), last_name: v('last_name'), email: v('email'),
         phone: v('phone'), city: v('city'), sports: sports, diploma: v('diploma'),
-        pro_card: v('pro_card'), message: v('message'), website: v('website'), consent: true
+        pro_card: v('pro_card'), message: v('message'), website: v('website'), consent: true,
+        referral_code: REF
       })
     }).then(function (r) { return r.json().catch(function () { return {}; }); })
       .then(function (d) {
