@@ -261,7 +261,7 @@ input[type=file]{padding:.625rem .75rem;font-size:.875rem;cursor:pointer}
       $('photo').hidden = true;
     }
     if (p.price) fact('Séance', 'Dès ' + p.price + ' €');
-    if (p.promo_pct) fact('Offre', p.promo_scope === 'all' ? '-' + p.promo_pct + ' % sur toutes les séances' : '1re séance -' + p.promo_pct + ' %');
+    if (p.promo_pct) fact('Offre', ({ all: '-' + p.promo_pct + ' % sur toutes les séances', duo: 'Offre duo -' + p.promo_pct + ' %', midi: 'Flash midi -' + p.promo_pct + ' %' })[p.promo_scope] || '1re séance -' + p.promo_pct + ' %');
     if (p.next_start) {
       var d = new Date(p.next_start);
       var day = d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Paris' });
