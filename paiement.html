@@ -142,6 +142,11 @@ input[type=file]{padding:.625rem .75rem;font-size:.875rem;cursor:pointer}
 <p>Retourne dans l'app GetYourMentor : ta réservation apparaît comme confirmée dans Mes séances (ça peut prendre quelques secondes).</p>
 <p>L'argent reste chez GetYourMentor jusqu'à ta séance. Il n'est versé au coach qu'après ta séance, quand tu lui as donné ton code de séance à 4 chiffres.</p>
 </div>
+<div class="card" id="demande" hidden>
+<p><b>Ta demande est envoyée à ton coach.</b></p>
+<p>Pour une séance à domicile, le coach accepte d'abord. Ta carte est seulement bloquée : tu ne paies que s'il accepte.</p>
+<p>Retourne dans l'app GetYourMentor : sa réponse arrive dans les 24 h, et au plus tard 3 h avant la séance. Sans réponse, la demande est annulée et rien n'est débité.</p>
+</div>
 <div class="card" id="annule" hidden>
 <p><b>Paiement interrompu.</b></p>
 <p>Rien n'a été débité. Retourne dans l'app pour payer : tes places restent bloquées 35 minutes après ta réservation, puis elles sont rendues aux autres sportifs.</p>
@@ -160,9 +165,13 @@ input[type=file]{padding:.625rem .75rem;font-size:.875rem;cursor:pointer}
 <script>
 (function () {
   var q = new URLSearchParams(location.search);
-  var ok = q.get('etat') === 'ok';
-  document.getElementById(ok ? 'ok' : 'annule').hidden = false;
-  document.getElementById('titre').textContent = ok ? 'Paiement reçu' : 'Paiement interrompu';
+  var etat = q.get('etat');
+  var ok = etat === 'ok';
+  // Séance à domicile (0074) : empreinte de carte, le coach accepte d'abord.
+  var demande = etat === 'demande';
+  document.getElementById(demande ? 'demande' : ok ? 'ok' : 'annule').hidden = false;
+  document.getElementById('titre').textContent =
+    demande ? 'Demande envoyée' : ok ? 'Paiement reçu' : 'Paiement interrompu';
   var ref = q.get('ref');
   if (ref && /^GYM-\d{6}$/.test(ref)) document.getElementById('ref').textContent = 'Réservation ' + ref;
 })();
